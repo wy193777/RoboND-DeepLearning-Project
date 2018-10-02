@@ -15,19 +15,19 @@
 
 # modified by Devin Anzelmo 2017
 
-from tensorflow.contrib.keras.python.keras import activations
-from tensorflow.contrib.keras.python.keras import backend as K
-from tensorflow.contrib.keras.python.keras import constraints
-from tensorflow.contrib.keras.python.keras import initializers
-from tensorflow.contrib.keras.python.keras import regularizers
-from tensorflow.contrib.keras.python.keras.engine import InputSpec
-from tensorflow.contrib.keras.python.keras.engine import Layer
-from tensorflow.contrib.keras.python.keras.utils.generic_utils import get_custom_objects 
-from tensorflow.contrib.keras.python.keras.utils import conv_utils
+from tensorflow.keras import activations
+from tensorflow.keras import backend as K
+from tensorflow.keras import constraints
+from tensorflow.keras import initializers
+from tensorflow.keras import regularizers
+from tensorflow.keras.engine import InputSpec
+from tensorflow.keras.engine import Layer
+from tensorflow.keras.utils.generic_utils import get_custom_objects 
+from tensorflow.keras.utils import conv_utils
 
-from tensorflow.python.layers import base
-from tensorflow.python.layers import utils
-from tensorflow.python.layers import convolutional as tf_convolutional_layers
+from tensorflow.layers import base
+from tensorflow.layers import utils
+from tensorflow.layers import convolutional as tf_convolutional_layers
 
 from tensorflow.python.framework import constant_op
 from tensorflow.python.framework import ops

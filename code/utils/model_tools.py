@@ -1,6 +1,6 @@
 import os
 import json
-from tensorflow.contrib.keras.python import keras 
+from tensorflow import keras 
 from scipy import misc
 from . import data_iterator
 import numpy as np
