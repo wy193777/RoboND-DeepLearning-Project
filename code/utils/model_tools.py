@@ -27,7 +27,6 @@ def load_network(your_weight_filename):
     config_name = 'config' + '_' + your_weight_filename
     weight_path = os.path.join('..', 'data', 'weights', your_weight_filename)
     config_path = os.path.join('..', 'data', 'weights', config_name)
-    
     if os.path.exists(config_path):
         with open(config_path, 'r') as file:
             json_string = json.load(file)  
@@ -37,7 +36,7 @@ def load_network(your_weight_filename):
     else:
         raise ValueError('No config_yourmodel file found at {}'.format(config_path))
         
-    if os.path.exists(weight_path):
+    if os.path.exists(weight_path + '.index'):
         your_model.load_weights(weight_path)
         return your_model
     else:
@@ -47,7 +46,7 @@ def load_network(your_weight_filename):
 def write_predictions_grade_set(model, out_folder_suffix,subset_name, grading_dir_name):
     validation_path = os.path.join('..', 'data', grading_dir_name, subset_name)
     file_names = sorted(glob.glob(os.path.join(validation_path, 'images', '*.jpeg')))
-
+    print(validation_path)
     output_path = os.path.join('..', 'data', 'runs', subset_name + '_' + out_folder_suffix)
     make_dir_if_not_exist(output_path)
     image_shape = model.layers[0].output_shape[1]
