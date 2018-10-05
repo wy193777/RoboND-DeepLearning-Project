@@ -81,3 +81,7 @@ The final score of the model is 0.4574615522377517.
 ## Future Enhancements
 
 The model only works with human because we only provided data related to human. To let the model works on other objects like cat, dog, car etc, we need to train the model with this kind of data.
+
+## Note
+
+The provided environment aren't working with GPU. And I cannot correctly set up the environment for specified TensorFlow version. After some struggle, I set it up using newest TensorFlow version. So my result is based on TensorFlow `1.11.0`.
