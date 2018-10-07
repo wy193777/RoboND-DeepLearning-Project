@@ -14,7 +14,7 @@ In this project, we will train a deep neural network to identify and track a tar
 
 ![fcn][fcn]
 
-Here we use Fully Convolutional Network (FCN) to deal semantic segmentation problem. The structure of a FCN is like the picture above. A convolutional neuro network usually used to classify images according to image content. But the fully connected layer at the end of CNN can only handle classification problems. To do semantic segmentation, the network have to perserve spatial information. That's why we have to use FCN.
+Here we use Fully Convolutional Network (FCN) to deal semantic segmentation problem. The structure of a FCN is like the picture above. A convolutional neuro network usually used to classify images according to image content. To do semantic segmentation, the network have to perserve spatial information. That's why we have to use FCN.
 
 An FCN is comprised of an encoder and decoder. The encoder portion is a convolution network that reduces to a deeper 1x1 convolution layer.
 
@@ -22,9 +22,7 @@ An FCN is comprised of an encoder and decoder. The encoder portion is a convolut
 
 ![cnn][cnn]
 
-A cnn is connecting input images with multiple conbination of convoution layer, ReLu layer and pooling layer. Then at the end connection last layer to a fully connectioned layer to do classification job.
-
-In contrast to a flat fully connected layer that would be used for basic classification of images. This difference has the effect of preserving spacial information from the image.
+A cnn is connecting input images with multiple conbination of convoution layer, ReLu layer and pooling layer. Then at the end connection last layer to a fully connectioned layer to do classification job. But the fully connected layer at the end of CNN can only handle classification problems because it doesn't contains spatial information. To let spatial information preserved, we can connect another convolutional network instead of a fully connected layer.
 
 ### Decoder
 
@@ -38,6 +36,10 @@ Bilinear upsampling is a resampling technique that utilizes the weighted average
 
 A 1x1 convolution simply maps an input pixel with all it's channels to an output pixel, not looking at anything around itself. It is often used to reduce the number of depth channels, since it is often very slow to multiply volumes with extremely large depths.
 
+### Skip Connections
+
+A cnn will looking closely at some images and lose the bigger picture as a result. Even if we were to decode the output of the encoder back to the original image size, some information has been lost. Skip connection is an easy way to retain those information. A skip layer will connect an encoder layer to decoder layer directly so the decoder layer will not miss 'the larger picture'.
+
 So, in summary FCN is consisting of the following components:
 
 - Encoder blocks: that will take inputs from previous layers, compress it down to a context losing in the way some of the resolution (the bigger picture).
@@ -45,6 +47,8 @@ So, in summary FCN is consisting of the following components:
 - 1x1 Convolution block: that will reduce depth and capture the global context of the scene.
 
 - Decoder blocks: that will take inputs from previous layers, decompress it, by up-sampling and adding inputs from previous encoder blocks through skip connections to recover some of the lost information hence do the precise segmentation.
+
+- Skip connections: to retain some information from ecoder to decoder layer to make sure the network will not only focus on small features but also not missing the bigger picture.
 
 - Softmax activation: normal convolution layer takes outputs from last decoder block and activate output pixels to indicate class and location of objects (semantic segmentation).
 
@@ -81,6 +85,8 @@ The final score of the model is 0.4574615522377517.
 ## Future Enhancements
 
 The model only works with human because we only provided data related to human. To let the model works on other objects like cat, dog, car etc, we need to train the model with this kind of data.
+
+In practice, we might want to train a FCN that could identify not only humans but also other physical objects so robot can avoid collisions.
 
 ## Note
 
